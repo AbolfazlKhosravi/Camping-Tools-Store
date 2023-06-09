@@ -39,6 +39,16 @@ class getProducts {
 }
 
 class UL {
+  constructor() {
+    seachProducts.addEventListener("input", (e) => {
+      console.log("hhhh");
+      let products = productsData.filter((p) =>
+        p.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      this.displayProducts(products);
+      this.addtocart();
+    });
+  }
   displayProducts(p) {
     let result = "";
     p.forEach((item) => {
@@ -309,95 +319,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ul.cartLogic();
   storage.saveproducts(products, airLocal, landLocal);
 });
-
-// seachProducts.addEventListener("change", (e) => {
-//   console.log(e);
-//   let productsa = productsData.filter((p) =>
-//     p.title.toLowerCase().includes(e.target.value.toLowerCase())
-//   );
-//   let result = "";
-//    productsa.forEach((item) => {
-//     result += `<div class="product">
-//     <div class="product-img">
-//         <img src=${item.imageUrl} alt="">
-//     </div>
-//     <div class="information-products">
-//        <div class="pricdAdd">
-//         <p class="price">price <span>${item.price}</span> ${item.title}</p>
-//         </div>
-//         <span class="add" data-id="${item.id}"><i class="fa-solid fa-cart-plus"></i></span>
-//     </div>
-//   </div>`;
-//     productsDom.innerHTML = result;
-   
-//   });
-//   const addToCartbtn1 = [...document.querySelectorAll(".add")];
-//   updateAddToCartbtn = addToCartbtn1;
-//   addToCartbtn1.forEach((item) => {  
-//     const id = item.dataset.id;
-//     const isInCart = cart.find((e) => e.id == parseInt(id));
-//     if (isInCart) {
-//       item.style.opacity = 0;
-//       return;
-//     }
-//     item.addEventListener("click", () => {
-//       item.style.opacity = 0;
-//       const addCart = { ...storage.callProducts(id), quantity: 1 };
-//       cart = [...cart, addCart];
-//       storage.saveCart(cart);
-//       let result = 0;
-//       const price = cart.reduce((crr, acu) => {
-//         result += acu.quantity;
-//         return crr + acu.quantity * acu.price;
-//       }, 0);
-//       if (price > 1500) {
-//         let disCount = price * 0.05;
-//         let priceAfterDiscount = price - disCount;
-//         discountCart.children[1].innerText = `${disCount.toFixed(2)}`;
-//         PriceAfterDiscount.children[1].innerText = `${priceAfterDiscount.toFixed(
-//           2
-//         )}`;
-//       } else {
-//         let disCount = 0;
-//         discountCart.children[1].innerText = `${disCount.toFixed(2)}`;
-//         PriceAfterDiscount.children[1].innerText = `${price.toFixed(2)}`;
-//       }
-//       cartItems.innerText = result;
-//       valueCart.innerText = result;
-//       totalPrice.children[1].innerText = `${price.toFixed(2)} $`;
-//       let result1 = "";
-//       cart.forEach((e) => {
-//         result1 += `
-//            <div class="tour--cart">
-//                <div class="crt-header">
-//                    <div class="img-cart">
-//                      <img src=${e.imageUrl} alt="">
-//                      <p class="title-tour">a${e.title}</p>
-//                    </div>
-//                    <span class="trash"><i class="fa-solid fa-trash-can" data-id="${
-//                      e.id
-//                    }"></i></span>
-//                </div>
-//                  <div class="cart-footer">
-//                    <p>${e.travel}</p>
-//                    <div class="value">
-//                        <span class="minus"><i class="fa-solid fa-circle-minus" data-id="${
-//                          e.id
-//                        }"></i></span>
-//                        <p>${e.quantity}</p>
-//                        <span class="pluse"><i class="fa-solid fa-circle-plus" data-id="${
-//                          e.id
-//                        }"></i></span>
-//                    </div>
-//                    <p>${e.price * e.quantity} $</p>
-//                  </div>
-//            </div> `;
-//         productsCart.innerHTML = result1;
-//       });
-//     });
-//   });
-
-// });
 
 navCart.addEventListener("click", () => {
   cartCenter.style.maxHeight = "2000vh";
