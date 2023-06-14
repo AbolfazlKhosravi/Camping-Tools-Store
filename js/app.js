@@ -246,7 +246,7 @@ class UL {
           plusCart.quantity;
         e.target.parentElement.parentElement.nextElementSibling.innerText = `${(
           plusCart.quantity * plusCart.price
-        ).toFixed(2)}`;
+        ).toFixed(2)} $`;
       } else if (e.target.classList.contains("fa-circle-minus")) {
         const plusCart = cart.find((e) => e.id == id);
 
@@ -263,7 +263,7 @@ class UL {
         e.target.parentElement.nextElementSibling.innerText = plusCart.quantity;
         e.target.parentElement.parentElement.nextElementSibling.innerText = `${(
           plusCart.quantity * plusCart.price
-        ).toFixed(2)}`;
+        ).toFixed(2)} $`;
       }
     });
   }
